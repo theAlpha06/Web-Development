@@ -1,0 +1,39 @@
+//Challenge
+
+/*
+    Starting from scratch, build and render the HTML for our section project. Check the Foofle slide for what you're trying to build.
+    We'll be adding styling ro ir later.
+    Hints:
+    * The React logo is a file in the project tree, so you can access it by using 'src="./react-logo.png" in your image element
+    * You can also set the 'width' attribute of the image element just like in HTML. In the slide, I have it set to 40px.
+
+
+import logo from './logo.svg';
+import './App.css';
+
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <h1 className='heading'>Fun Facts about React</h1>
+        <ul>
+          <li>Was first released in 2013</li>
+          <li>Was originally created by Jordan Walke</li>
+          <li>It is declarative</li>
+          <li>It is composable</li>
+          <li>Is maintained by facebook</li>
+        </ul>
+      </header>
+    </div>
+  );
+}
+
+export default App;
+*/
+
+The component name should be capitalized, it should not be camel case
+
+React components are functions which return React elements. It can be used over and over again.
+
+Put styles.css inside src folder
