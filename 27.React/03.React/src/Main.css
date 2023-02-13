@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+main{
+    background-color: #282D35;
+    background-image: url(./images/logo.svg);
+    background-repeat: no-repeat;
+    background-position: right;
+    color: #ffffff;
+    padding: 57px 27px;
+}
+.main--title{
+    font-weight: 700;
+    font-size: 39px;
+    letter-spacing: -0.05em;
+}
+.main--facts {
+    margin-top: 46px;
+}
+
+.main--facts > li {
+    line-height: 19px;
+    padding-block: 10px;
+    max-width: 400px;
+}
+
+.main--facts > li::marker {
+    font-size: 1.4rem;
+    color: #61Dafb;
+}
