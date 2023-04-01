@@ -70,7 +70,7 @@ passport.use(new GoogleStrategy({
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
   },
   function(accessToken, refreshToken, profile, cb) {
-    console.log(profile);
+    
     User.findOrCreate({ googleId: profile.id }, function (err, user) {
       return cb(err, user);
     });
@@ -83,7 +83,7 @@ passport.use(new FacebookStrategy({
   callbackURL: "http://localhost:3000/auth/facebook/secrets"
 },
 function(accessToken, refreshToken, profile, cb) {
-  console.log(profile);
+  
   User.findOrCreate({ facebookId: profile.id }, function (err, user) {
     return cb(err, user);
   });
@@ -142,7 +142,7 @@ app.get('/register', (req, res)=>{
 
 app.get('/secrets', (req, res)=>{
     User.find({"secret": {$ne: null}}, (err, foundUser)=>{
-      if(err)console.log(err);
+      if(err){};
       else{
         if(foundUser){
           res.render("secrets", {userswithSecrets: foundUser});
@@ -171,7 +171,7 @@ else{
 app.post('/register', (req, res)=>{
         User.register({username: req.body.username}, req.body.password, (err, user)=>{
             if(err){
-                console.log(err);
+                
                 res.redirect("/register")
             }else{
                 passport.authenticate('local')(req, res, ()=>{
@@ -189,7 +189,7 @@ app.post('/login', (req, res)=>{
     })
     req.login(user, (err)=>{
         if(err){
-            console.log(err);
+            
         }else{
             passport.authenticate("local")(req, res, ()=>{
                 res.redirect("/secrets");
@@ -202,7 +202,7 @@ app.post("/submit", (req, res)=>{
   const submittedSecret = req.body.secret;
 
   User.findById(req.user.id, (err, foundUser)=>{
-    if(err)console.log(err);
+    if(err){};
     else{
       foundUser.secret = submittedSecret;
       foundUser.save(()=>{
@@ -213,5 +213,5 @@ app.post("/submit", (req, res)=>{
 });
 
 app.listen(port, ()=>{
-    console.log(`Server is listening on port ${port}`);
+    
 })

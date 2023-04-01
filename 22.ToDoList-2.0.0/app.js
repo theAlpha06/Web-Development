@@ -42,9 +42,9 @@ app.get("/", function(req, res) {
     if(foundItems === 0){
       Item.insertMany(defaultItems,(err)=>{
         if(err)
-          console.log(err)
+          {}
         else
-          console.log("Success")
+          {}
       })
     }
     else
@@ -101,7 +101,7 @@ app.post("/delete", (req, res)=>{
   if(listName === "Today"){
     Item.findByIdAndRemove(checkedItemId, (err)=>{
       if(!err){
-        console.log("Success")
+        
         res.redirect("/");
       }
     })
@@ -123,5 +123,5 @@ app.get("/about", function(req, res){
 });
 
 app.listen(3000, function() {
-  console.log("Server started on port 3000");
+  
 });
