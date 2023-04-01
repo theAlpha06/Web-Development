@@ -18,9 +18,9 @@ const uri = "mongodb+srv://theAlphaCoder06:Database%4023071971@cluster0.pw1yofw.
 async function run() {
     try {
         await mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true}).then(()=>{
-            console.log("Connected")
+            
         }).catch((err)=>{
-            console.log(err);
+            
         })
       } catch (error) {
         console.log(error);
@@ -52,5 +52,5 @@ app.post("/", (req, res)=>{
 })
 
 app.listen(port, ()=>{
-    console.log(`Server is listening on ${port}`);
+    
 })

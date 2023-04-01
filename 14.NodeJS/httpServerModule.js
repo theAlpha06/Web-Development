@@ -4,7 +4,7 @@ const fs = require('fs');
 const port = process.env.PORT || 3000;
 
 const server = http.createServer((req, res)=>{
-    console.log(req.url);
+    
     res.setHeader('Content-Type', 'text/html');
     if(req.url == '/home'){
         res.statusCode = 200;
@@ -31,7 +31,7 @@ const server = http.createServer((req, res)=>{
 });
 
 server.listen(port, ()=>{
-    console.log(`Server is listening on port ${port}`);
+    
 });
 
 
