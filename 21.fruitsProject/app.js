@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-main().catch(err=>console.log(err));
+main().catch(err=>{});
 
 async function main(){
 
@@ -41,8 +41,8 @@ async function main(){
 
   People.updateOne({_id: "6347b66c62c8e737d7e3c381"}, {favouritefruits: mango}, (err)=>{
     if(err)
-      console.log(err)
-    else{console.log("Success")}
+      {}
+    else{}
   });
 
   // people.save()

@@ -55,7 +55,7 @@ app.get("/", function (req, res) {
 
 
 app.post("/", (req, res)=>{
-  console.log(req.body)
+  
 
   let newItem = req.body.newItem; 
   if(req.body.list === "Work"){
@@ -75,5 +75,5 @@ app.get("/work", (req, res)=>{
 
 
 app.listen(port, () => {
-  console.log(`Server is listening on ${port}`);
+  
 });

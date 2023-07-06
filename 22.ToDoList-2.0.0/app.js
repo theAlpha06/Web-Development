@@ -107,7 +107,7 @@ app.post("/delete", (req, res)=>{
   if(listName === "Tasks"){
     Item.findByIdAndRemove(checkedItemId, (err)=>{
       if(!err){
-        console.log("Success")
+        
         res.redirect("/");
       }
     })

@@ -39,7 +39,7 @@ function Navbar() {
 );
 }
 const element = <h1 className='header'>This is JSX</h1>;
-console.log(element);
+
 function MainContent(){
   return(
     element

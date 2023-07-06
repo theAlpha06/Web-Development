@@ -7,5 +7,4 @@
 
 import * as a from "./moduleSecond.mjs";
 
-console.log(a);
-console.log(a.simple())
+
