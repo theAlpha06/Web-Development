@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+  }
+
+h1, h2, h3, h4, p {
+    margin: 0;
+}
+
+body {
+    background-color: rgb(35, 37, 44);
+    color: white;
+    font-family: Inter, sans-serif;
+    margin-top: 50px;
+}
+
+a {
+    color: rgb(22, 22, 25);
+    text-decoration: none;
+}
+
+/* App */
+.content {
+    max-width: 300px;
+    background-color: rgb(26, 27, 33);
+    margin: 0 auto;
+    border-radius: 20px;
+}
+
+/* Detail */
+.detail {
+    text-align: center;
+    margin-bottom: 33px;
+}
+.detail > img {
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+    margin-bottom: 15px;
+}
+.designation {
+    margin-bottom: 20px;
+}
+h1 {
+    font-size: 25px;
+}
+.designation > p {
+    color: rgba(243, 191, 153, 1);
+    font-size: 12.8px;
+}
+.email, .linkedin{
+    background-color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.linkedin {
+    background-color: rgba(80, 147, 226, 1);
+    color: #ffffff;
+}
+
+/* Button */
+.button {
+    text-align: center;
+}
+.button > i {
+    color:rgb(26, 27, 33);
+}
+.button > a {
+    margin: 0 10px 0 10px;
+}
+
+/* About */
+.about, .interests {
+    padding: 0 28px;
+    margin-bottom: 24px;
+    font-size: 10px;
+}
+h3 {
+    font-size: 16px;
+    margin-bottom: .2rem;
+}
+
+/* Footer */
+.footer {
+    background: rgba(22, 22, 25, 1);
+    padding: 20px;
+    text-align: center;
+    border-radius: 0 0 20px 20px;
+}
+.footer > a {
+    background-color: #E5E5E5;
+    margin: 0 10px;
+    padding: 5px;
+    border-radius: 5px;
+}

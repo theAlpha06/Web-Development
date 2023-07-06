@@ -1,5 +1,26 @@
 <%- include("header") -%>
 
+<nav class="navbar">
+  <form action="/deletelist" method="post">
+    <div class="items">
+      <a href="/">Home</a>
+      <%for(i = 0; i < list.length; i++){%>
+        <%if(list[i].name != 'Favicon.ico'){%>
+          <a href="/<%=list[i].name%>" id="list-link" value="<%=list[i].name%>" name="listName">
+            <%= list[i].name %>
+            <button type="submit"><i class="fa-regular fa-trash-can" id="delete-button" name="deletebutton" value="<%= list[i]._id%>"></i></button>
+          </a>
+        <%}%>
+      <%}%>
+    </div>
+  </form>
+  <form action="/newList" method="post">
+    <div class="search">
+        <input type="text" name="customList" placeholder="Add new list"/>
+      </div>
+  </form>
+</nav>
+
   <div class="box" id="heading">
     <h1> <%= listTitle %> </h1>
   </div>

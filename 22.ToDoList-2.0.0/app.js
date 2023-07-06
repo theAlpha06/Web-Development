@@ -3,13 +3,13 @@ const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
 const _ = require("lodash")
 const app = express();
-
+const port = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://127.0.0.1:27017/toDoListDB", {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://theAlphaCoder06:Mongodb%4023071971@cluster.2e8b6lq.mongodb.net/toDoListDB?retryWrites=true&w=majority", {useNewUrlParser: true});
 
 const itemsSchema = {
   name: String
@@ -20,10 +20,10 @@ const item1 = new Item({
   name: "Welcome to your To Do List"
 })
 const item2 = new Item({
-  name: "Hit the + button to add a new item"
+  name: "Tap the + button to add a new item"
 })
 const item3 = new Item({
-  name: "<-- Hit this to delete an item"
+  name: "<-- Tap this to delete an item"
 })
 const defaultItems = [item1, item2, item3];
 
@@ -43,12 +43,17 @@ app.get("/", function(req, res) {
       Item.insertMany(defaultItems,(err)=>{
         if(err)
           console.log(err)
-        else
+        else{
           console.log("Success")
+        }
       })
     }
-    else
-      res.render("list", {listTitle: "Today", newListItems: foundItems});
+    else{
+      List.find({}, (err, foundList) => {
+
+        res.render("list", {listTitle: "Tasks", newListItems: foundItems, list: foundList});
+      })
+    }
   })
 
 
@@ -56,7 +61,6 @@ app.get("/", function(req, res) {
 
 app.get("/:customListName", (req, res)=>{
   const customListName = _.capitalize(req.params.customListName);
-
   List.findOne({name: customListName}, (err, foundList)=>{
     if(!err){
       if(!foundList){
@@ -68,7 +72,9 @@ app.get("/:customListName", (req, res)=>{
         res.redirect("/" + customListName);
       }
       else{
-        res.render("list", {listTitle: foundList.name, newListItems: foundList.items})
+        List.find({}, (err, foundCustomList) => {
+          res.render("list", {listTitle: foundList.name, newListItems: foundList.items, list:foundCustomList})
+        })
       }
     }
   })
@@ -81,7 +87,7 @@ app.post("/", function(req, res){
   const item = new Item({
     name: itemName
   })
-  if(listName === "Today"){
+  if(listName === "Tasks"){
     item.save();
     res.redirect("/");
   }else{
@@ -97,8 +103,8 @@ app.post("/", function(req, res){
 app.post("/delete", (req, res)=>{
   const checkedItemId = req.body.checkbox;
   const listName = req.body.listName;
-
-  if(listName === "Today"){
+  
+  if(listName === "Tasks"){
     Item.findByIdAndRemove(checkedItemId, (err)=>{
       if(!err){
         console.log("Success")
@@ -108,20 +114,50 @@ app.post("/delete", (req, res)=>{
   }else{
     List.findOneAndUpdate({name: listName}, {$pull: {items: {_id: checkedItemId}}}, (err, foundList)=>{
       if(!err)
-        res.redirect("/" + listName);
+      res.redirect("/" + listName);
     });
   }
-
-})
-
-app.get("/work", function(req,res){
-  res.render("list", {listTitle: "Work List", newListItems: workItems});
+  
 });
 
-app.get("/about", function(req, res){
-  res.render("about");
+app.post("/deletelist", (req, res)=>{
+  const listName = req.body.listName;
+  const button = req.body.deletebutton;
+  console.log(listName, button);
+  res.redirect("/");
 });
 
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
+
+
+app.post('/newList', (req, res) => {
+  const newListName  = _.capitalize(req.body.customList);
+  List.findOne({name: newListName}, (err, foundList) => {
+    if(!err){
+      if(!foundList){
+        const list = new List({
+          name: newListName,
+          items: defaultItems
+        })
+        list.save();
+        res.redirect("/" + newListName);
+      }
+      else{
+        List.find({}, (err, foundCustomList) => {
+          res.render('list', {listTitle: foundList.name, newListItems: foundList.items, list:foundCustomList})
+        })
+      }
+    }
+  })
+});
+
+// app.get("/work", function(req,res){
+//   res.render("list", {listTitle: "Work List", newListItems: workItems});
+// });
+
+// app.get("/about", function(req, res){
+//   res.render("about");
+// });
+
+app.listen(port, function() {
+  console.log(`Server started on port ${port}`);
 });
